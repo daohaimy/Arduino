@@ -1,0 +1,45 @@
+
+byte antwort = 0;
+double zahl = 0;
+boolean vorzeichen = true;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Serial.println("\n ");
+  Serial.println(" Eingabetest ");
+  Serial.println(" Eingabe erwartet ");
+
+  antwort = Serial.read();
+  Serial.print (" antwort : ");
+  Serial.println (antwort);
+}
+
+int IntEingabe(){
+
+  while (Serial.available()>0) {
+    antwort = Serial.read();
+    Serial.print (" antwort : ");
+    Serial.print (antwort);
+    Serial.print ("   ");
+    Serial.println ((char)antwort);
+    if (antwort >= 48 && antwort <= 57){
+      zahl = zahl * 10 + (antwort - 48);
+      Serial.print("zahl: ");
+      Serial.println(zahl);
+    }
+    if(antwort == 45){
+        vorzeichen = false;
+      }
+    if(antwort == 10){  
+      if(!vorzeichen){
+          zahl = -1 * zahl;
+        }
+        return zahl;      
+    }
+  }
+}
+
+void loop() {
+  
+}

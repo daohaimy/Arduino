@@ -1,0 +1,23 @@
+byte antwort = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Serial.println("\n ");
+  Serial.println(" Eingabetest ");
+
+  antwort = Serial.read();
+  Serial.print (" antwort : ");
+  Serial.println (antwort);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  while (Serial.available()>0) {
+    antwort = Serial.read();
+    Serial.print (" antwort : ");
+    Serial.print (antwort);
+    Serial.print ("   ");
+    Serial.println ((char)antwort);
+  }
+}

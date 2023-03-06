@@ -1,0 +1,56 @@
+char Auto_Rot = 7;
+char Auto_Gelb = 6;
+char Auto_Gruen = 5;
+char Fussgaenger_Rot = 3;
+char Fussgaenger_Gruen = 2;
+
+void setup() {
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(2, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  AutoRot();  
+  delay(2000);           
+  AutoRotGelb();   
+  delay(500);
+  AutoGruen();  
+  delay(3000);           
+  AutoGelb();   
+  delay(750);              
+}
+
+void AutoRot(){
+  digitalWrite(Auto_Rot, HIGH);
+  digitalWrite(Auto_Gelb, LOW);
+  digitalWrite(Auto_Gruen, LOW);
+  digitalWrite(Fussgaenger_Rot, LOW);
+  digitalWrite(Fussgaenger_Gruen, HIGH);
+  }
+
+void AutoRotGelb(){
+  digitalWrite(Auto_Rot, HIGH);
+  digitalWrite(Auto_Gelb, HIGH);
+  digitalWrite(Auto_Gruen, LOW);
+  digitalWrite(Fussgaenger_Rot, HIGH);
+  digitalWrite(Fussgaenger_Gruen, LOW);
+  }
+
+void AutoGruen(){
+  digitalWrite(Auto_Rot, LOW);
+  digitalWrite(Auto_Gelb, LOW);
+  digitalWrite(Auto_Gruen, HIGH);
+  digitalWrite(Fussgaenger_Gruen, LOW);
+}
+
+void AutoGelb(){
+  digitalWrite(Auto_Rot, LOW);
+  digitalWrite(Auto_Gelb, HIGH);
+  digitalWrite(Auto_Gruen, LOW);
+  digitalWrite(Fussgaenger_Rot, HIGH);
+  digitalWrite(Fussgaenger_Gruen, LOW);  
+  }

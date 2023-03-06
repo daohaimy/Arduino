@@ -1,0 +1,40 @@
+
+
+#include "max6675.h"
+
+int thermoSO  = 4;
+int thermoCS  = 5;
+int thermoSCK = 6;
+
+MAX6675 thermocouple(thermoSCK, thermoCS, thermoSO);
+
+float temperatur;
+float maxTemperatur = 13;
+float minTemperatur = 12;
+
+int obergrenze = 25;
+int untergrenze = 20;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Serial.println("\n ");
+  Serial.println(" Temperaturmessung startet.");
+
+  pinMode(maxTemperatur, OUTPUT);
+  pinMode(minTemperatur, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+   temperatur = thermocouple.readCelsius();
+   Serial.print(" ϑ = ");
+   Serial.print(temperatur);
+   Serial.println(" °C ");
+   delay(1000);
+   
+   if(maxTemperatur > temperatur)  temperatur = maxTemperatur;
+   if(minTemperatur < temperatur)  temperatur = minTemperatur;
+   digitalWrite(minTemperatur, HIGH);
+   digitalWrite(maxTemperatur, HIGH);
+}
